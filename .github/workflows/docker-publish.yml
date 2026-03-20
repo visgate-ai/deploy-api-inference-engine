@@ -55,15 +55,7 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
-          platforms: linux/amd64,linux/arm64
-      
-      - name: Generate SBOM
-        if: github.event_name != 'pull_request'
-        uses: anchore/sbom-action@v0
-        with:
-          image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
-          format: spdx-json
-          output-file: sbom.spdx.json
+          platforms: linux/amd64
       
       - name: Output image URL
         run: echo "Image pushed to ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}"
