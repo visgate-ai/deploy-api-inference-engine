@@ -26,6 +26,7 @@ class ModelManager:
         self.active_model_id = None
         self.r2_client = None
         self.active_model_type = None
+        self.hf_token_valid = False
         
         # Hugging Face Hub'a giriş yap
         hf_token = os.getenv("HF_HUB_TOKEN")
@@ -35,8 +36,10 @@ class ModelManager:
             try:
                 login(token=hf_token)
                 print("✅ HuggingFace login successful", flush=True)
+                self.hf_token_valid = True
             except Exception as e:
                 print(f"⚠️ HuggingFace login failed (continuing without login): {e}", flush=True)
+                self.hf_token_valid = False
                 import traceback
                 traceback.print_exc()
         
@@ -416,7 +419,8 @@ class ModelManager:
             "active_model_type": self.active_model_type,
             "vram_used_mb": round(vram_used, 2),
             "gpu_available": torch.cuda.is_available(),
-            "r2_connected": self.r2_client is not None
+            "r2_connected": self.r2_client is not None,
+            "hf_token_valid": self.hf_token_valid
         }
         print(f"   Status: {status}", flush=True)
         return status
