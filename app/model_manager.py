@@ -22,7 +22,10 @@ class ModelManager:
         hf_token = os.getenv("HF_HUB_TOKEN")
         if hf_token:
             print("HuggingFace Hub'a giriş yapılıyor...")
-            login(token=hf_token)
+            try:
+                login(token=hf_token)
+            except Exception as e:
+                print(f"⚠️ HuggingFace giriş hatası (devam ediliyor): {e}")
         
         # R2 Client oluştur
         self._init_r2_client()
