@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  ai-worker:
+    image: visgate-ai-node:v1
+    build: .
+    container_name: local-gpu-worker
+    ports:
+      - "8000:8000"
+    environment:
+      - USE_LOCAL_STORAGE=true
+      - HF_HOME=/root/.cache/huggingface 
+    volumes:
+      - .:/app  
+      - ./test_inputs:/app/local_inputs  
+      - ./test_outputs:/app/local_outputs
+      # GÜNCELLENEN SATIR BURASI: 
+      # Projenizdeki 'models' klasörünü, konteynerin içindeki hub klasörüne bağlıyoruz.
+      - ./models:/root/.cache/huggingface/hub
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]

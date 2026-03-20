@@ -1,0 +1,39 @@
+# Deep Learning
+torch==2.1.0 --index-url https://download.pytorch.org/whl/cu118
+torchvision==0.16.0 --index-url https://download.pytorch.org/whl/cu118
+torchaudio==2.1.0 --index-url https://download.pytorch.org/whl/cu118
+
+# Transformers & Diffusers
+transformers
+diffusers
+accelerate
+peft
+safetensors
+huggingface_hub
+
+# Media Processing
+opencv-python-headless
+pillow
+imageio
+imageio-ffmpeg
+decord
+moviepy
+librosa
+soundfile
+
+# Utilities
+xformers
+einops
+sentencepiece
+protobuf
+bitsandbytes
+
+# Web API & Storage
+fastapi
+uvicorn
+pydantic
+python-multipart
+boto3
+aiofiles
+python-dotenv
+scipy
