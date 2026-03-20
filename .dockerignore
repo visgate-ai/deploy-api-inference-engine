@@ -1,0 +1,48 @@
+# Git
+.git
+.gitignore
+
+# Docker
+Dockerfile
+docker-compose*.yml
+.dockerignore
+
+# Python
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info
+.eggs
+dist
+build
+
+# Test dosyaları
+test_*.py
+*.test.py
+pytest_cache
+.coverage
+htmlcov
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# Docs
+*.md
+README*
+
+# Output files
+test_output.png
+*.log
+
+# Environment
+.env
+.env.*
+
+# Node (if any)
+node_modules
+package*.json

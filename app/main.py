@@ -7,8 +7,8 @@ from dotenv import load_dotenv
 # .env dosyasındaki ayarları yükle
 load_dotenv()
 
-from storage import download_input_from_r2, upload_output_to_r2
-from model_manager import manager
+from .storage import download_input_from_r2, upload_output_to_r2
+from .model_manager import manager
 
 app = FastAPI(title="Visgate AI Sunucusuz GPU Worker")
 

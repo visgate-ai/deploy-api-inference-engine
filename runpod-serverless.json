@@ -1,0 +1,59 @@
+{
+  "name": "visgate-inference-engine",
+  "image": {
+    "type": "docker",
+    "uri": "ghcr.io/uzunenes/deploy-api-inference-engine:latest"
+  },
+  "env": [
+    {
+      "key": "HF_HUB_TOKEN",
+      "value": "",
+      "description": "HuggingFace API Token"
+    },
+    {
+      "key": "R2_ENDPOINT_URL",
+      "value": "",
+      "description": "Cloudflare R2 Endpoint URL"
+    },
+    {
+      "key": "R2_ACCESS_KEY_ID",
+      "value": "",
+      "description": "R2 Access Key"
+    },
+    {
+      "key": "R2_SECRET_ACCESS_KEY",
+      "value": "",
+      "description": "R2 Secret Key"
+    },
+    {
+      "key": "R2_MODELS_BUCKET",
+      "value": "visgate-deploy-api-models-apac",
+      "description": "Region bucket name (apac, eeur, enam, oc, weur, wnam)"
+    },
+    {
+      "key": "R2_INPUT_BUCKET",
+      "value": "visgate-deploy-api-inference-input",
+      "description": "Input files bucket"
+    },
+    {
+      "key": "R2_OUTPUT_BUCKET",
+      "value": "visgate-deploy-api-inference-output",
+      "description": "Output files bucket"
+    }
+  ],
+  "ports": [
+    {
+      "port": 8000,
+      "protocol": "http"
+    }
+  ],
+  "volumes": [],
+  "hardware": {
+    "gpu": "AMPERE_A5000",
+    "gpuCount": 1,
+    "memoryInGb": 30
+  },
+  "idleTimeout": 300,
+  "minMemoryInGb": 15,
+  "readinessCommand": "curl -f http://localhost:8000/health"
+}
